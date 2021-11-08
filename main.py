@@ -8,8 +8,8 @@ import asyncio
 import requests
 
 imgs_help = []
-temp = requests.get("http://discord-holo-api.ml/api").json()["requests"]
-imgs_help = temp
+temp = requests.get("http://discord-holo-api.ml/api").json()["requests"] 
+imgs_help = temp + ", nekro"
 print(imgs_help)
 client = commands.AutoShardedBot(command_prefix= f"{prefix}", intents = Intents.all())
 client.topggpy = topgg.DBLClient(client, dbl_token, autopost=True)
@@ -35,7 +35,7 @@ async def on_ready():
     client.load_extension('jishaku')
     print('[COGS] jishaku')    
     for filename in os.listdir('./core'): 
-            if filename.endswith('.py') and filename[:-3] != "yandex":
+            if filename.endswith('.py') and filename[:-3] != "yandex" and filename[:-3] != "nekro":
                 client.load_extension(f"core.{filename[:-3]}")
                 print(f'[COGS] {filename[:-3]}')
     client.loop.create_task(status_task())
