@@ -9,7 +9,6 @@ from async_timeout import timeout
 from functools import partial
 import youtube_dl
 from youtube_dl import YoutubeDL
-from core.yandex import *
 # Suppress noise about console usage from errors
 youtube_dl.utils.bug_reports_message = lambda: ''
 
@@ -257,10 +256,7 @@ class Music(commands.Cog):
             await ctx.invoke(self.connect_)
 
         player = self.get_player(ctx)
-       # if search.startswith("https://music.yandex.ru"):
-        #    print(get_track_url(search))
-        # If download is False, source will be a dict which will be used later to regather the stream.
-        # If download is True, source will be a discord.FFmpegPCMAudio with a VolumeTransformer.
+        
         source = await YTDLSource.create_source(ctx, search, loop=self.bot.loop, download=False)
 
         await player.queue.put(source)
