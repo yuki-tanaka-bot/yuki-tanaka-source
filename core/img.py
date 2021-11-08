@@ -18,15 +18,16 @@ class Image(commands.Cog):
             return
         if args.lower() == "nekro":
             img = nekro_random()
-        resp  = requests.get(f'http://discord-holo-api.ml/api/{args.lower()}')
+        else:
+            resp  = requests.get(f'http://discord-holo-api.ml/api/{args.lower()}')
 
-        if resp.status_code == 200:
+            if resp.status_code == 200:
 
 
-            img = resp.json()
+                img = resp.json()
 
-            img = img["url"]
-            img = requote_uri(img)
+                img = img["url"]
+                img = requote_uri(img)
 
         emb = Embed(title = f'{args.capitalize()}', colour = Colour.dark_purple())
         emb.set_image(url = img)
