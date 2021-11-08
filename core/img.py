@@ -16,6 +16,8 @@ class Image(commands.Cog):
         if not ctx.channel.is_nsfw():
             await ctx.send("Этот канал не имеет пометку `nsfw`!")
             return
+        if args.lower() == "nekro":
+            img = nekro_random()
         resp  = requests.get(f'http://discord-holo-api.ml/api/{args.lower()}')
 
         if resp.status_code == 200:
@@ -26,15 +28,9 @@ class Image(commands.Cog):
             img = img["url"]
             img = requote_uri(img)
 
-            emb = Embed(title = f'{args.capitalize()}', colour = Colour.dark_purple())
-            emb.set_image(url = img)
-            emb.set_footer(text = f"For  {ctx.author}")
-            await ctx.send(embed = emb)
-        
-        elif resp.status_code == 404:
-        
-            await ctx.send(f"Я не нашла {args}")
-
-
+        emb = Embed(title = f'{args.capitalize()}', colour = Colour.dark_purple())
+        emb.set_image(url = img)
+        emb.set_footer(text = f"For  {ctx.author}")
+        await ctx.send(embed = emb)
 def setup(bot):
     bot.add_cog(Image(bot))
