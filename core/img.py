@@ -4,7 +4,7 @@ from discord.ext import commands
 from discord.utils import get
 import requests
 from requests.utils import requote_uri
-
+from core.nekro import nekro_random
 class Image(commands.Cog):
 
     def __init__(self, bot: commands.Bot):
