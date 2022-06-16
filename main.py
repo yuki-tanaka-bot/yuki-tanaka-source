@@ -7,10 +7,7 @@ import topgg
 import asyncio
 import requests
 
-imgs_help = []
-temp = requests.get("http://discord-holo-api.ml/api").json()["requests"] 
-imgs_help = temp + ", nekro"
-print(imgs_help)
+
 client = commands.AutoShardedBot(command_prefix= f"{prefix}", intents = Intents.all())
 client.topggpy = topgg.DBLClient(client, dbl_token, autopost=True)
 
@@ -104,7 +101,6 @@ async def help(ctx, arg = ''):
         emb = Embed(title = 'Помощь по командам!', colour = Colour.dark_purple(), description = "Мой префикс: `yt`\nЕсли нужна справка по конкретной команде - yt help <команда>", timestamp = ctx.message.created_at)
         emb.add_field(name = "Разработчик", value = f'`ping`, `all_commands`', inline=False)
         emb.add_field(name = "Музыка", value = f'`join`, `leave`, `play`, `pause`, `resume`, `skip`, `remove`, `clear`, `queue`, `currentsong`', inline=False)
-        emb.add_field(name = "Развлечения", value = f'`image`', inline=False)
     emb.set_footer(text = f"Для {ctx.author}")
     await ctx.send(embed = emb)
 client.run(token)
